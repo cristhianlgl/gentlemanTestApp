@@ -3,6 +3,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
+
 @Component({
   selector: 'app-toolbar',
   standalone: true,
@@ -11,5 +12,6 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-
+  private jsonUrl = '/domains/data/people.json';
+  
 }

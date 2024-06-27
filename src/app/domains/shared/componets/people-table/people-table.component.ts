@@ -1,10 +1,11 @@
-import { Component, viewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatSort, MatSortModule} from '@angular/material/sort';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { Person } from '../../../models/person.model';
+import { People } from '../../../data/people.data';
 
 @Component({
   selector: 'app-people-table',
@@ -13,19 +14,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   templateUrl: './people-table.component.html',
   styleUrl: './people-table.component.scss'
 })
-export class PeopleTableComponent {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+export class PeopleTableComponent {
+  displayedColumns: string[] = ['id', 'name', 'category', 'company', 'levelOfHappiness'];
+  dataSource: MatTableDataSource<Person>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor() {
-    // Create 100 users
-    const users:any[][] = [];
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource(People);
   }
 
   ngAfterViewInit() {
@@ -41,5 +39,4 @@ export class PeopleTableComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 }
